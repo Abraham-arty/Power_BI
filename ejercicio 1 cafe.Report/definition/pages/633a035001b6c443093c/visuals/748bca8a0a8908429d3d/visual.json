@@ -1,0 +1,143 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "748bca8a0a8908429d3d",
+  "position": {
+    "x": 952.85714285714289,
+    "y": 0,
+    "z": 1000,
+    "height": 500,
+    "width": 968,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "index_1"
+                            }
+                          },
+                          "Name": "Variación",
+                          "Property": "datetime"
+                        }
+                      },
+                      "Hierarchy": "Jerarquía de fechas"
+                    }
+                  },
+                  "Level": "Mes"
+                }
+              },
+              "queryRef": "index_1.datetime.Variación.Jerarquía de fechas.Mes",
+              "nativeQueryRef": "datetime Mes",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "index_1"
+                    }
+                  },
+                  "Property": "coffee_name"
+                }
+              },
+              "queryRef": "index_1.coffee_name",
+              "nativeQueryRef": "coffee_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "index_1"
+                    }
+                  },
+                  "Property": "Total Transacciones"
+                }
+              },
+              "queryRef": "index_1.Total Transacciones",
+              "nativeQueryRef": "Total Transacciones"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cf360339bdd9dbc8a1d8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "index_1"
+              }
+            },
+            "Property": "Total Transacciones"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ebde7e0f17664fcb24ae",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "index_1"
+                      }
+                    },
+                    "Name": "Variación",
+                    "Property": "datetime"
+                  }
+                },
+                "Hierarchy": "Jerarquía de fechas"
+              }
+            },
+            "Level": "Mes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2381cc7b6fe88f1a7365",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "index_1"
+              }
+            },
+            "Property": "coffee_name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

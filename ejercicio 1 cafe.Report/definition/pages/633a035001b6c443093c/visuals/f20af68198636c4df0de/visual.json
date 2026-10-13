@@ -1,0 +1,85 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "f20af68198636c4df0de",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 500.35968781812011,
+    "width": 967.95772941005384,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "index_1"
+                    }
+                  },
+                  "Property": "coffee_name"
+                }
+              },
+              "queryRef": "index_1.coffee_name",
+              "nativeQueryRef": "coffee_name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "index_1"
+                        }
+                      },
+                      "Property": "money"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(index_1.money)",
+              "nativeQueryRef": "Suma de money"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "index_1"
+                      }
+                    },
+                    "Property": "money"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

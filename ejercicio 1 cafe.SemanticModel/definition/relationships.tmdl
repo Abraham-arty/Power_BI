@@ -1,0 +1,15 @@
+relationship 792547c5-8e96-457c-913d-6fdc962a2da8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: index_1.date
+	toColumn: LocalDateTable_0ae2c6e3-9d77-486a-b620-9718fabf9b37.Date
+
+relationship 53acc9d7-dde0-4d10-8c36-357eec7a1df2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: index_1.datetime
+	toColumn: LocalDateTable_5527a39d-7540-42b3-bc26-2808648d3da0.Date
+
+relationship e43e783b-6366-4dc5-9972-6c054cceacb9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: index_1.Calendario
+	toColumn: LocalDateTable_c7dcc022-4419-4c54-8db2-cf35a7448fd4.Date
+
