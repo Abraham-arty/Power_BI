@@ -1,0 +1,50 @@
+table 'Hoja Generos y Categorias'
+	lineageTag: 58d84087-d6a1-4beb-b8b7-d303c6f2ffe7
+
+	measure 'Media Tiempo Single Player' = CALCULATE(AVERAGE(fact_games[average_playtime]),FILTER(bridge_categories,bridge_categories[category] = "Single-player"))
+		lineageTag: 47860261-9411-4245-a3e5-367095978160
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Media Tiempo Multi player' = CALCULATE(AVERAGE(fact_games[average_playtime]),FILTER(bridge_categories,bridge_categories[category] = "Multi-player"))
+		lineageTag: 3a0d224b-d3e5-4535-983b-be5687231b10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promedio Positive Rating Single' = CALCULATE(AVERAGE(fact_games[positive_ratings]),FILTER(bridge_categories,bridge_categories[category]="Single-player"))
+		lineageTag: b3d025dd-fef1-4be8-ae2e-4438a1bebf0c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promedio Positive Rating Multi player' = CALCULATE(AVERAGE(fact_games[positive_ratings]),FILTER(bridge_categories,bridge_categories[category] = "Multi-player"))
+		lineageTag: 39ad562e-1afc-48b3-a0ea-3628917ffd52
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promedio Negative Rating Multi player' = CALCULATE(AVERAGE(fact_games[negative_ratings]),FILTER(bridge_categories,bridge_categories[category] = "Multi-player"))
+		lineageTag: b0725358-e83d-4f0f-93af-e7dc7550742f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Promedio Negative Rating Single' = CALCULATE(AVERAGE(fact_games[negative_ratings]),FILTER(bridge_categories,bridge_categories[category]="Single-player"))
+		lineageTag: d68c5b25-3be6-4ff4-8321-5d0443f9def6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tiempo Jugado Por Genero' = CALCULATE(AVERAGE(fact_games[average_playtime]))
+		lineageTag: 672b2306-040a-4ed3-8927-5684251f3463
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Hoja Generos y Categorias' = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

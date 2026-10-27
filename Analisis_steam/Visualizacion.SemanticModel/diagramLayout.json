@@ -1,0 +1,191 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 2993.3334350585938
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 403,
+            "y": 7709.0851336788528
+          },
+          "nodeIndex": "fact_games",
+          "nodeLineageTag": "95768093-be6d-4ed8-91f8-2b8d37de9dc4",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 8106.9097694104585
+          },
+          "nodeIndex": "bridge_categories",
+          "nodeLineageTag": "f5a065b3-8be3-4284-9a7d-c4a679a037f6",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 7883.0406801713489
+          },
+          "nodeIndex": "dim_categories",
+          "nodeLineageTag": "0319837d-1d50-4549-b6e8-15b2ffcbb832",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 7475.4285511441867
+          },
+          "nodeIndex": "bridge_genres",
+          "nodeLineageTag": "83783703-e265-48e6-aa2b-6aefeb91bd03",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 7688.7193491159633
+          },
+          "nodeIndex": "dim_genres",
+          "nodeLineageTag": "b29e3991-2b89-4ae2-847d-5035f0507e6e",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 790.28343583512708,
+            "y": 7640.597794135987
+          },
+          "nodeIndex": "dim_publishers",
+          "nodeLineageTag": "cfe3f632-ac2c-4727-9d1c-5c101fd15a79",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 779.60781822003844,
+            "y": 7886.4337493734256
+          },
+          "nodeIndex": "dim_developers",
+          "nodeLineageTag": "3446443b-28ef-4e32-bdc2-ca818686a323",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 232.56516911611436,
+            "y": 7150.2165486879858
+          },
+          "nodeIndex": "Medidas_Generales",
+          "nodeLineageTag": "3a4d0f7b-32c0-4f15-a963-fd841cb811d4",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 529.22258666076107,
+            "y": 7141.5362160634431
+          },
+          "nodeIndex": "Hoja_KPI's",
+          "nodeLineageTag": "dfe9812d-fd37-4cb1-9894-2dd73f534987",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 838.53742175005482,
+            "y": 7147.92908458268
+          },
+          "nodeIndex": "Hoja_Historial",
+          "nodeLineageTag": "a1bb5404-719c-4805-a304-8fa4ea43bcbe",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 222.53742175005482,
+            "y": 6864.1393479268063
+          },
+          "nodeIndex": "Hoja Publishers y Developers",
+          "nodeLineageTag": "64f46a39-b60c-41b5-9e3d-68c4bc622e04",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 586.53742175005482,
+            "y": 6876.795959590052
+          },
+          "nodeIndex": "Hoja Generos y Categorias",
+          "nodeLineageTag": "58d84087-d6a1-4beb-b8b7-d303c6f2ffe7",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1122.5374217500548,
+            "y": 2921.4316600507618
+          },
+          "nodeIndex": "Hoja SO",
+          "nodeLineageTag": "9308e479-fc9b-4383-8940-82e307eb13f6",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 10,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

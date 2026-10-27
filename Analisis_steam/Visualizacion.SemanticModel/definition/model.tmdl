@@ -1,0 +1,32 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-MX
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["fact_games","bridge_categories","dim_categories","bridge_genres","dim_genres","dim_publishers","dim_developers","Medidas_Generales","Hoja_KPI's","Hoja_Historial","Hoja Publishers y Developers","Hoja Generos y Categorias","Hoja SO"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_games
+ref table DateTableTemplate_7e58f227-e35a-4f93-89e3-fde971c1563e
+ref table LocalDateTable_0af696b7-6f68-41a4-b332-a98d771ccb25
+ref table bridge_categories
+ref table dim_categories
+ref table bridge_genres
+ref table dim_genres
+ref table dim_publishers
+ref table dim_developers
+ref table Medidas_Generales
+ref table 'Hoja_KPI''s'
+ref table Hoja_Historial
+ref table 'Hoja Publishers y Developers'
+ref table 'Hoja Generos y Categorias'
+ref table 'Hoja SO'
+
+ref cultureInfo es-ES
+

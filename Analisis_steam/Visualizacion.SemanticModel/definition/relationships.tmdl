@@ -1,0 +1,35 @@
+relationship 3df36e7c-a3e7-4e8b-914d-2e822f2ef581
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_games.release_date
+	toColumn: LocalDateTable_0af696b7-6f68-41a4-b332-a98d771ccb25.Date
+
+relationship AutoDetected_adb44cec-9f20-48ad-8b90-9d9adc764bf6
+	crossFilteringBehavior: bothDirections
+	fromColumn: bridge_categories.appid
+	toColumn: fact_games.appid
+
+relationship AutoDetected_1ed1aeb7-1d28-4741-b3b4-5b501e3ae6cd
+	fromColumn: bridge_categories.category
+	toColumn: dim_categories.category
+
+relationship AutoDetected_59dce82d-d9c4-4c93-bebf-39a00818cf28
+	crossFilteringBehavior: bothDirections
+	fromColumn: bridge_genres.appid
+	toColumn: fact_games.appid
+
+relationship AutoDetected_9929ae4c-e35f-41d9-8f4a-086c4a2b6568
+	fromColumn: bridge_genres.genre
+	toColumn: dim_genres.genre
+
+relationship 1477e9ef-370b-8884-0204-84bb1a152cb0
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: fact_games.publisher
+	toColumn: dim_publishers.publisher
+
+relationship 20182622-32db-477a-f4fa-fb5aca031758
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: fact_games.developer
+	toColumn: dim_developers.developer
+

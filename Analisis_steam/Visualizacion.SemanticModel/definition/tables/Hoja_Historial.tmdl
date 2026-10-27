@@ -1,0 +1,36 @@
+table Hoja_Historial
+	lineageTag: a1bb5404-719c-4805-a304-8fa4ea43bcbe
+
+	measure 'Juegos Developer Por Año' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),USERELATIONSHIP(fact_games[developer],dim_developers[developer]))
+		lineageTag: eb0f98d0-d854-40b2-85dc-0b977fc9ff77
+
+	measure 'Juegos Año Anterior' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),SAMEPERIODLASTYEAR(fact_games[release_date]))
+		formatString: 0
+		lineageTag: 07a8b8ee-ed01-4bae-9a33-b834ba6d1372
+
+	measure 'Variacion VS Año Anterior' = VAR Actual = [Total Juegos]  VAR Anterior = [Juegos Año Anterior]  RETURN DIVIDE( Actual - Anterior, 0 )
+		lineageTag: 4ba8e5d1-b7ca-4045-9ffe-342c66201129
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Score Aprobacion Año Anterior' = CALCULATE([Score Aprobacion],SAMEPERIODLASTYEAR(fact_games[release_date]))
+		lineageTag: 4f1412c3-819a-43b1-9aff-2877383fe6c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Juegos Publisher Por Año' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),USERELATIONSHIP(fact_games[publisher],dim_publishers[publisher]))
+		formatString: 0
+		lineageTag: fd9db30f-4849-4c14-b381-7f1c5a545ef7
+
+	partition Hoja_Historial = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

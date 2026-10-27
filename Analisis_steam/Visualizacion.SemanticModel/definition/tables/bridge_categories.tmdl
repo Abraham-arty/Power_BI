@@ -1,0 +1,32 @@
+table bridge_categories
+	lineageTag: f5a065b3-8be3-4284-9a7d-c4a679a037f6
+
+	column appid
+		dataType: int64
+		formatString: 0
+		lineageTag: 62888c15-e432-4f98-8eec-aba233ce0705
+		summarizeBy: none
+		sourceColumn: appid
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 08bc8468-6fd3-4cab-b5cc-101713ee6a42
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	partition bridge_categories = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\abrah\OneDrive\Documentos\Portafolio\Análisis Steam\Estoyhastalamadre\bridge_categories.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"appid", Int64.Type}, {"category", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

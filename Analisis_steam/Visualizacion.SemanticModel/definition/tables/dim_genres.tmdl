@@ -1,0 +1,40 @@
+table dim_genres
+	lineageTag: b29e3991-2b89-4ae2-847d-5035f0507e6e
+
+	column genre_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4007321b-723c-4284-9b15-937ab2c518a2
+		summarizeBy: none
+		sourceColumn: genre_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column genre
+		dataType: string
+		lineageTag: c31a459d-e896-446a-a8c9-a10b0307fc66
+		summarizeBy: none
+		sourceColumn: genre
+
+		annotation SummarizationSetBy = Automatic
+
+	column genre_group
+		dataType: string
+		lineageTag: 7dfb5e88-1f28-4858-acb2-fced0679b44d
+		summarizeBy: none
+		sourceColumn: genre_group
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_genres = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\abrah\OneDrive\Documentos\Portafolio\Análisis Steam\Estoyhastalamadre\dim_genres.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"genre_id", Int64.Type}, {"genre", type text}, {"genre_group", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

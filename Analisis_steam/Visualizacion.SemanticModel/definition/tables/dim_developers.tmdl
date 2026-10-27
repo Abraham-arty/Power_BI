@@ -1,0 +1,46 @@
+table dim_developers
+	lineageTag: 3446443b-28ef-4e32-bdc2-ca818686a323
+
+	column developer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ec087d3-e1bf-48a1-9ec4-8f75a6a4e0aa
+		summarizeBy: sum
+		sourceColumn: developer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column developer
+		dataType: string
+		lineageTag: 175418b0-7256-4d3d-b43f-0ae555d215b4
+		summarizeBy: none
+		sourceColumn: developer
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ranking Developer Global' = RANKX(ALL(dim_developers),CALCULATE(DISTINCTCOUNT(fact_games[appid]),RELATEDTABLE(fact_games)),,DESC,Dense)
+		formatString: 0
+		lineageTag: 6bad32ec-c9e1-4853-a9be-a099e8fac15b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ranking Developer Score' = RANKX(ALL(dim_developers),CALCULATE(DIVIDE(SUM(fact_games[positive_ratings]),SUM(fact_games[positive_ratings]) + SUM(fact_games[negative_ratings]),0),RELATEDTABLE(fact_games)),,DESC,Dense)
+		formatString: 0
+		lineageTag: 18595acd-3fa6-4b0d-81a6-4f3b97b7be17
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_developers = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\abrah\OneDrive\Documentos\Portafolio\Análisis Steam\Estoyhastalamadre\dim_developers.csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"developer_id", Int64.Type}, {"developer", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

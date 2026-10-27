@@ -1,0 +1,42 @@
+table 'Hoja_KPI''s'
+	lineageTag: dfe9812d-fd37-4cb1-9894-2dd73f534987
+
+	measure 'Juego Top Positive Rating' = MAXX(TOPN(1, fact_games,fact_games[positive_ratings],DESC),fact_games[name])
+		lineageTag: 7a4d26a4-dc75-4941-be68-3f0e12b0075b
+
+	measure 'Publisher Top 1' = MAXX(TOPN(1,ADDCOLUMNS(VALUES(dim_publishers[publisher]),"@total", CALCULATE(DISTINCTCOUNT(fact_games[appid]))),[@total],DESC),dim_publishers[publisher])
+		lineageTag: 0548d95e-d2b2-485e-b59c-7b1e07eb7351
+
+	measure 'Developer Top 1' = MAXX(TOPN(1,ADDCOLUMNS(VALUES(dim_developers[developer]),"@total",CALCULATE(DISTINCTCOUNT(fact_games[appid]))),[@total],DESC),dim_developers[developer])
+		lineageTag: 7e5b6d6f-22bf-40f1-82b0-e5646a183a69
+
+	measure 'Juegos Lanzados Por Año' = CALCULATE(DISTINCTCOUNT(fact_games[appid]), ALLEXCEPT(fact_games,fact_games[release_year]))
+		formatString: 0
+		lineageTag: 6df5875c-db10-4386-b377-61f06771530f
+
+	measure 'Juegos Windows' = ```
+			CALCULATE(DISTINCTCOUNT(fact_games[appid]), fact_games[windows] = 1) 
+			```
+		formatString: 0
+		lineageTag: 17dd2576-3200-4201-9b49-68da06bed8a9
+
+	measure 'Juegos Mac' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),fact_games[mac]= 1)
+		formatString: 0
+		lineageTag: 203645a2-8f9a-4ab9-ab52-efc923e53030
+
+	measure 'Juegos Linux' = CALCULATE(DISTINCTCOUNT(fact_games[appid]), fact_games[linux] = 1)
+		formatString: 0
+		lineageTag: e2ef1743-33aa-48e1-ae33-0bb539c88762
+
+	partition 'Hoja_KPI''s' = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

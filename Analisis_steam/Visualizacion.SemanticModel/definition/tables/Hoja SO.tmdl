@@ -1,0 +1,46 @@
+table 'Hoja SO'
+	lineageTag: 9308e479-fc9b-4383-8940-82e307eb13f6
+
+	measure 'Juegos solo Windows' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),fact_games[windows] = 1, fact_games[mac] = 0, fact_games[linux] = 0 )
+		formatString: 0
+		lineageTag: ef52e528-cd26-4d2b-b0cd-2d9f4f13b348
+
+	measure 'Juegos Windows Mac' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),fact_games[windows] = 1, fact_games[mac] = 1, fact_games[linux] = 0 )
+		formatString: 0
+		lineageTag: 49a7e3fe-23ff-4bad-b5a0-967b24e56059
+
+	measure 'Juegos Windows Linux' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),fact_games[windows] = 1, fact_games[mac] = 0, fact_games[linux] = 1 )
+		formatString: 0
+		lineageTag: 2c576d9f-b722-4414-8287-ea08c4e41614
+
+	measure 'Juegos Multiplataforma' = CALCULATE(DISTINCTCOUNT(fact_games[appid]),fact_games[windows] = 1, fact_games[mac] = 1, fact_games[linux] = 1 )
+		formatString: 0
+		lineageTag: 0c2384f3-c6e0-4dea-b2dc-3a65c6bb782f
+
+	measure 'Porcentaje Exclusivo Windows' = DIVIDE([Juegos solo Windows],[Total Juegos], 0)
+		lineageTag: 4b5779d2-6ed6-49ee-a1a7-74d478afdf08
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Porcentaje Multiplataforma' = DIVIDE([Juegos Windows Mac] + [Juegos Windows Linux] + [Juegos Multiplataforma],[Total Juegos],0)
+		lineageTag: 27b73d7d-5888-4e25-a504-d62ab6084aef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Score Aprobacion Por SO' = DIVIDE(SUM(fact_games[positive_ratings]),SUM(fact_games[positive_ratings]) + SUM(fact_games[negative_ratings]),0)
+		lineageTag: 5c934cc8-43b2-4753-8ef6-975aa90b62ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Hoja SO' = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+

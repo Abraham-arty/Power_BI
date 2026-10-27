@@ -1,0 +1,245 @@
+table fact_games
+	lineageTag: 95768093-be6d-4ed8-91f8-2b8d37de9dc4
+
+	measure P25 = CALCULATE(PERCENTILE.INC(fact_games[positive_ratings], 0.25), ALL(fact_games))
+		lineageTag: b31f2ab5-914b-48b5-95d6-7049b3cdf1a0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure P50 = CALCULATE(PERCENTILE.INC(fact_games[positive_ratings], 0.50), ALL(fact_games))
+		lineageTag: 0bf6a867-ebc4-42a0-bb69-7525f58a971d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure P75 = CALCULATE(PERCENTILE.INC(fact_games[positive_ratings], 0.75), ALL(fact_games))
+		lineageTag: 398fd333-ca88-4287-8962-cd4069e43d71
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column appid
+		dataType: int64
+		formatString: 0
+		lineageTag: bd32cf4d-04e5-43fc-aca4-edfde7a2a639
+		summarizeBy: none
+		sourceColumn: appid
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: a701acbb-7ba7-4746-9a6b-aebac6ce3f8a
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column release_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fdeec39a-22ac-44ab-aa15-0834fa764667
+		summarizeBy: none
+		sourceColumn: release_date
+
+		variation Variación
+			isDefault
+			relationship: 3df36e7c-a3e7-4e8b-914d-2e822f2ef581
+			defaultHierarchy: LocalDateTable_0af696b7-6f68-41a4-b332-a98d771ccb25.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column developer
+		dataType: string
+		lineageTag: 8523db43-867e-4f85-8512-879967c25d50
+		summarizeBy: none
+		sourceColumn: developer
+
+		annotation SummarizationSetBy = Automatic
+
+	column publisher
+		dataType: string
+		lineageTag: cc52d08f-b4a3-48b3-b7b5-1740d7971872
+		summarizeBy: none
+		sourceColumn: publisher
+
+		annotation SummarizationSetBy = Automatic
+
+	column required_age
+		dataType: int64
+		formatString: 0
+		lineageTag: 8586ecae-57bf-4651-8409-040f873f9d8d
+		summarizeBy: sum
+		sourceColumn: required_age
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 0039952e-e211-45a3-bf65-4e1a047a29d0
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+	column positive_ratings
+		dataType: int64
+		formatString: #,0
+		lineageTag: a069ab2a-0626-4cd8-af0a-985268683f29
+		summarizeBy: sum
+		sourceColumn: positive_ratings
+
+		annotation SummarizationSetBy = Automatic
+
+	column negative_ratings
+		dataType: int64
+		formatString: 0
+		lineageTag: cc2bc255-610e-469a-83fb-07b856d4aa9d
+		summarizeBy: sum
+		sourceColumn: negative_ratings
+
+		annotation SummarizationSetBy = Automatic
+
+	column achievements
+		dataType: int64
+		formatString: 0
+		lineageTag: 27cd417e-b55e-41b0-bce0-533dcace1008
+		summarizeBy: sum
+		sourceColumn: achievements
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_playtime
+		dataType: int64
+		formatString: #,0
+		lineageTag: 8430ae19-8901-4c3a-b467-4b678a484144
+		summarizeBy: sum
+		sourceColumn: average_playtime
+
+		annotation SummarizationSetBy = Automatic
+
+	column windows
+		dataType: int64
+		formatString: 0
+		lineageTag: 4c6a35e9-6545-447d-bfce-ce106b03f338
+		summarizeBy: sum
+		sourceColumn: windows
+
+		annotation SummarizationSetBy = Automatic
+
+	column mac
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ff56e48-6a08-471b-9ae4-6c3a578a8779
+		summarizeBy: sum
+		sourceColumn: mac
+
+		annotation SummarizationSetBy = Automatic
+
+	column linux
+		dataType: int64
+		formatString: 0
+		lineageTag: 702b7abc-4083-4a6c-9a22-2dfcb46b8dfb
+		summarizeBy: sum
+		sourceColumn: linux
+
+		annotation SummarizationSetBy = Automatic
+
+	column genres
+		dataType: string
+		lineageTag: 83db03fd-7bf4-4c98-8556-0178e4e2f852
+		summarizeBy: none
+		sourceColumn: genres
+
+		annotation SummarizationSetBy = Automatic
+
+	column content_and_access
+		dataType: string
+		lineageTag: ac2e84f1-c4f9-41ca-b6c2-a5c3dcd5ae50
+		summarizeBy: none
+		sourceColumn: content_and_access
+
+		annotation SummarizationSetBy = Automatic
+
+	column tools_software_edu
+		dataType: string
+		lineageTag: 32e932ae-74dc-486e-8173-a069c8c9f445
+		summarizeBy: none
+		sourceColumn: tools_software_edu
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_ratings
+		dataType: int64
+		formatString: #,0
+		lineageTag: a98dcec6-fb05-4597-b634-732067e56412
+		summarizeBy: sum
+		sourceColumn: total_ratings
+
+		annotation SummarizationSetBy = Automatic
+
+	column positive_ratio
+		dataType: double
+		formatString: #,0.00
+		lineageTag: c5d0b75c-94b7-4d66-a310-c179a37c5da9
+		summarizeBy: sum
+		sourceColumn: positive_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+	column release_year
+		dataType: int64
+		formatString: 0
+		lineageTag: c865920b-c1d3-43cd-8021-78cf58029604
+		summarizeBy: sum
+		sourceColumn: release_year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rango Precio' = IF(fact_games[price] = 0, "Gratuito", IF(fact_games[price]<= 5, "Menos de $5", IF(fact_games[price] <= 15, "$5 - $15", IF(fact_games[price] <= 30, "$15 - $30", "Más de $30"))))
+		lineageTag: e18d518a-83f8-4103-931d-ddafc47b8296
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Combinacion SO' = SWITCH(TRUE(),fact_games[windows] = 1 && fact_games[mac] = 1 && fact_games[linux] = 1, "Windows + Mac + Linux", fact_games[windows] = 1 && fact_games[mac] = 1 && fact_games[linux] = 0, "Windows + Mac",fact_games[windows] = 1 && fact_games[mac] = 0 && fact_games[linux] = 1, "Windows + Linux", fact_games[windows] =  0 && fact_games[mac] = 1 && fact_games[linux] = 1, "Mac + Linux", fact_games[windows]= 1, "Solo Windows", fact_games[mac] = 1, "Solo Mac", fact_games[linux] = 1, "Solo Linux", "Desconocido")
+		lineageTag: 65ed8279-82c3-4e10-8606-879a44de37ec
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ranking Playtime' = RANKX(ALL(fact_games),fact_games[average_playtime],,DESC,Dense)
+		formatString: #,0
+		lineageTag: 84a930c1-5050-40cd-b999-48238730ceb8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Segmento = ```
+			
+			SWITCH(
+			    TRUE(),
+			    fact_games[positive_ratings] >= [P75], "Top Mejores",
+			    fact_games[positive_ratings] >= [P50], "Promedio",
+			    fact_games[positive_ratings] >= [P25], "Mediano-Bajo",
+			    "Top Peores"
+			)   
+			```
+		lineageTag: 374b1fcb-a4f6-4954-b603-b5b91a7f3c49
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_games = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(File.Contents("C:\Users\abrah\OneDrive\Documentos\Portafolio\Análisis Steam\Estoyhastalamadre\fact_games.csv"),[Delimiter=",", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"appid", Int64.Type}, {"name", type text}, {"release_date", type date}, {"developer", type text}, {"publisher", type text}, {"required_age", Int64.Type}, {"price", type number}, {"positive_ratings", Int64.Type}, {"negative_ratings", Int64.Type}, {"achievements", Int64.Type}, {"average_playtime", Int64.Type}, {"windows", Int64.Type}, {"mac", Int64.Type}, {"linux", Int64.Type}, {"genres", type text}, {"content_and_access", type text}, {"tools_software_edu", type text}, {"total_ratings", Int64.Type}, {"positive_ratio", type number}, {"release_year", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_ResultType = Table
+

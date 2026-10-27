@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "14a03c6e90d69e5c6549",
+  "displayName": "Categorías y Generos",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

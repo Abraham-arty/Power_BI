@@ -1,0 +1,48 @@
+table Medidas_Generales
+	lineageTag: 3a4d0f7b-32c0-4f15-a963-fd841cb811d4
+
+	measure 'Total Juegos' = DISTINCTCOUNT(fact_games[appid] )
+		formatString: 0
+		lineageTag: 097a5ce9-8be8-42d6-bed4-3903df452b50
+
+	measure 'Score Aprobacion' = DIVIDE(SUM(fact_games[positive_ratings]),SUM(fact_games[positive_ratings]) + SUM(fact_games[negative_ratings]),0)
+		lineageTag: 1e5bbf0e-6162-4e91-8a3b-36521fe7fff5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Precio Promedio' = AVERAGEX(FILTER(fact_games,fact_games[price] > 0 ), fact_games[price])
+		lineageTag: 5e67dde0-fa3d-4397-974f-5b71b36fca3d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total positive rating' = SUM(fact_games[positive_ratings])
+		formatString: 0
+		lineageTag: 51363c79-4500-463a-a686-fd3b98392732
+
+	measure 'Total Negative Rating' = SUM(fact_games[negative_ratings])
+		formatString: 0
+		lineageTag: 0b1c33b3-fa24-4956-a205-501c3503ed32
+
+	measure 'Media Tiempo Jugado' = AVERAGE(fact_games[average_playtime])
+		lineageTag: 6e9686e2-b02b-470a-a36c-e03249687afa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Moda Tiempo Jugado' = MAXX(TOPN(1,ADDCOLUMNS(VALUES(fact_games[average_playtime]),"@freq",CALCULATE(COUNTROWS(fact_games))),[@freq],DESC),fact_games[average_playtime])
+		formatString: 0
+		lineageTag: c1df44d5-b17d-403e-9c33-779438e4ca09
+
+	partition Medidas_Generales = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+
